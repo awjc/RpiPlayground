@@ -5,10 +5,10 @@ from output_pin import OutputPin
 from input_pin import InputPin
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(True)
+GPIO.setwarnings(False)
 
-button = InputPin(17, True)
-led = OutputPin(21, False, True)
+button = InputPin(17)
+led = OutputPin(21, False)
 
 status = True
 while True:
