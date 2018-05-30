@@ -25,11 +25,11 @@ class InputPin(object):
     def add_callback(self, edge_type, callback_fn):
         GPIO.add_event_detect(self.port_num, edge_type, callback=callback_fn, bouncetime = 300)
 
-    def wait_for_edge(self, edge_type):
-        return GPIO.wait_for_edge(self.port_num, edge_type)
+    def wait_for_edge(self, edge_type, bouncetime):
+        return GPIO.wait_for_edge(self.port_num, edge_type, bouncetime = bouncetime)
     
-    def wait_for_edge(self, edge_type, timeout):
-        return GPIO.wait_for_edge(self.port_num, edge_type, timeout = timeout)
+    def wait_for_edge_with_timeout(self, edge_type, timeout, bouncetime):
+        return GPIO.wait_for_edge(self.port_num, edge_type, timeout = timeout, bouncetime = bouncetime)
 
     
 

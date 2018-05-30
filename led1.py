@@ -14,6 +14,6 @@ led = OutputPin(4, False)
 print('Ready.')
 status = True
 while True:
-    button.wait_for_edge(GPIO.BOTH, 50)
+    button.wait_for_edge_with_timeout(GPIO.BOTH, 50)
     led.set_status(False if button.read() else True)
     
