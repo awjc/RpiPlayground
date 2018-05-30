@@ -9,7 +9,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 button = InputPin(17)
-led = OutputPin(21, False)
+led = OutputPin(4, False)
 
 print('Ready.')
 status = True
