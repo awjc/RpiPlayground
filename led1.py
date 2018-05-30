@@ -4,12 +4,14 @@ import time
 from output_pin import OutputPin
 from input_pin import InputPin
 
+print('Initializing...')
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
 button = InputPin(17)
 led = OutputPin(21, False)
 
+print('Ready.')
 status = True
 while True:
     button.wait_for_edge(GPIO.BOTH, 50)
