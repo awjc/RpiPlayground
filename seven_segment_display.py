@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 
 import time
+from math import sqrt; from itertools import count, islice
+
 from output_pin import OutputPin
 from input_pin import InputPin
 
@@ -8,6 +10,9 @@ print('Initializing...')
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
+""" The ports for the SSD, in order of pin connection on the board.
+    There is one port per segment, and one for the dot, for a total of 8.
+"""
 ports = [26, 19, 6, 5, 21, 20, 12, 25]
 
 """ These ports seem to cause the SSD to just go dark when the pins are high,
@@ -42,11 +47,18 @@ def print_num(number_array):
         bins = [True if int(i) else False for i in number_array]
         GPIO.output(ports[idx], GPIO.HIGH if bins[idx] else GPIO.LOW)
 
+def is_prime(n):
+    return n > 1 and all(n%i for i in islice(count(2), int(sqrt(n)-1)))
+
+
 counter = 0
 print_num(zero)
 while True:
     button.wait_for_edge(GPIO.FALLING, bouncetime=300)
-    print_num(digits[counter % 10])
-    counter += 1
+    print_num(digits[counter])
+    led.set_status(is_prime(counter))
+    counter = (counter + 1) % 10
+        
+        
         
     
