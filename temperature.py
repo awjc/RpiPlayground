@@ -62,12 +62,11 @@ try:
             timestamp = int(time.time())
             logfile.write("%s,%s\n" % (timestamp, ftemp))
             datetime = time.strftime("%H:%M:%S", time.localtime())
-            print("%s : %sºF" % (datetime, ftemp))
+            print("%s : %s ºF" % (datetime, ftemp))
             # Wait for the next second to happen before proceeding so we don't get 2 readings on the same timestamp
             while int(time.time()) == timestamp:
                 time.sleep(0.01)
                 pass
-            print(i)
 except KeyboardInterrupt:
     print("Stopping...")
     pass
